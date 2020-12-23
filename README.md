@@ -1,5 +1,5 @@
 # VRDL Final Project
-Code for Private Score 0.9270 in Bengali.AI Handwritten Grapheme Classification
+Code for Private Score 0.9270 in Bengali.AI Handwritten Grapheme Classification<br>
 The file "report.ppt" is the slide of presentation and the file "report.pdf" is the report of this project
 
 ## Abstract
