@@ -59,9 +59,9 @@ $ python train_consonant.py
 
 The expected training time is:
 
-GPUs | KFold | Image size | Training Epochs | Training Time
-------------- | ------------- | ------------- | ------------- | -------------
-3x 2080 Ti | 10 | 320 | 100 | 24 hours
+GPUs | Training Epochs | Training Time
+------------- | ------------- | -------------
+3x 2080 Ti | 50 | 24 hours
 
 After we finish training our models, upload your file to kaggle and make submission.
 Here is my [Notebook in Kaggle](https://www.kaggle.com/jia072/bengali-ai)
