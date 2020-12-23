@@ -16,10 +16,18 @@ To reproduct my submission, run the code my [Notebook in Kaggle](https://www.kag
 
 ## Producing Your Own Submission
 To produce your own submission, do the following steps:
-1. [Prepare Data](#dataset-preparation)
-2. [Installation](#installation)
+1. [Installation](#installation)
+2. [Prepare Data](#dataset-preparation)
 3. [Train and Make Submission](#train-and-make-prediction)
 
+
+## Installation
+All requirements should be detailed in requirements.txt. Using virtual environment is recommended.
+```
+virtualenv .
+source bin/activate
+pip3 install -r requirements.txt
+```
 
 ## Dataset Preparation
 You need to download the [training data](https://www.kaggle.com/c/bengaliai-cv19/data) by yourself.<br>
@@ -41,13 +49,6 @@ VRDL_FinalProject
   .
 ```
 
-## Installation
-All requirements should be detailed in requirements.txt. Using virtual environment is recommended.
-```
-virtualenv .
-source bin/activate
-pip3 install -r requirements.txt
-```
 
 ## Train and Make Prediction
 You can simply run the following command to train your models.
