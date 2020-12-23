@@ -10,6 +10,7 @@ mat2 = np.arange(236)
 
 
 def Allign(image, partition='test'):
+    ''' Align words to the center of image '''
     img1 = image.mean(axis=1)
     img2 = image.mean(axis=0)
     imgall = img1.mean()
@@ -17,6 +18,7 @@ def Allign(image, partition='test'):
     mean_x = int((img1 * mat1).mean() / imgall)
     mean_y = int((img2 * mat2).mean() / imgall)
 
+    # shift it if it's training
     if partition == 'train':
         mean_x += np.random.randint(-16, 16)
         mean_y += np.random.randint(-16, 16)
@@ -30,13 +32,14 @@ def Allign(image, partition='test'):
     # print(_t, _b, _l, _r)
 
     zeros = np.zeros((137, 236))
-    zeros[68-_t:68 + _b, 118-_l:118 + _r] = image[mean_x -
-                                                  _t:mean_x + _b, mean_y-_l:mean_y + _r]
+    zeros[68-_t:68 + _b, 118-_l:118 + _r] = \
+        image[mean_x - _t:mean_x + _b, mean_y-_l:mean_y + _r]
 
     return zeros[68 - 64: 68 + 64, 118 - 96: 118 + 96]
 
 
 def AddNoise(image, scalar=(32./255)):
+    ''' Add noise to image '''
     try:
         H, W = image.shape
         h = np.random.randint(1, H//2)
@@ -50,6 +53,7 @@ def AddNoise(image, scalar=(32./255)):
 
 
 def CutOff(image):
+    ''' cut part of image and add noise block '''
     try:
         H, W = image.shape
         h = np.random.randint(1, H//4)
@@ -63,6 +67,7 @@ def CutOff(image):
 
 
 class GraphemeDataset(Dataset):
+    ''' Dataset of Bengali '''
     def __init__(self, images, label, partition):
         self.partition = partition
         self.root = label
@@ -78,6 +83,7 @@ class GraphemeDataset(Dataset):
         image = self.images[idx] / 255
         image = Allign(image, self.partition) * 2 - 1
 
+        # Data Augmentation
         if self.partition == 'train':
             if np.random.rand() < 0.5:
                 image = AddNoise(image, 64./255)
