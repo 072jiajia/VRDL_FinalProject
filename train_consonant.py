@@ -85,8 +85,6 @@ def _init_():
 
     return args
 
-#############################################################################################################################
-
 
 def get_indices(train):
     OK = {13, 22, 23, 29, 43, 53, 64, 71, 72,
@@ -172,8 +170,12 @@ def main(args):
     test_image = GraphemeDataset(test_data,
                                  reduced_test.consonant_diacritic.values,
                                  'test')
-    test_loader = torch.utils.data.DataLoader(test_image, batch_size=args.n_classes * args.n_samples,
-                                              shuffle=False, drop_last=False, num_workers=8)
+    batch_size = args.n_classes * args.n_samples
+    test_loader = torch.utils.data.DataLoader(test_image,
+                                              batch_size=batch_size,
+                                              shuffle=False,
+                                              drop_last=False,
+                                              num_workers=8)
 
     model = APINet(7).cuda()
     model = nn.DataParallel(model)
