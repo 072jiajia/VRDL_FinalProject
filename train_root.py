@@ -84,20 +84,17 @@ def _init_():
 
     return args
 
-#############################################################################################################################
-
 
 def main(args):
 
     print('loading data')
     train = pd.read_csv('train.csv')
     data0 = pd.read_parquet('train_image_data_0.parquet')
-    # data1 = pd.read_parquet('train_image_data_1.parquet')
-    # data2 = pd.read_parquet('train_image_data_2.parquet')
-    # data3 = pd.read_parquet('train_image_data_3.parquet')
-    # # concate data
-    # data_full = pd.concat([data0, data1, data2, data3], ignore_index=True)
-    data_full = pd.concat([data0], ignore_index=True)
+    data1 = pd.read_parquet('train_image_data_1.parquet')
+    data2 = pd.read_parquet('train_image_data_2.parquet')
+    data3 = pd.read_parquet('train_image_data_3.parquet')
+    # concate data
+    data_full = pd.concat([data0, data1, data2, data3], ignore_index=True)
 
     print("read finished")
     print('number of data:', len(data_full))
@@ -128,8 +125,12 @@ def main(args):
     test_image = GraphemeDataset(test_data,
                                  reduced_test.grapheme_root.values,
                                  'test')
-    test_loader = torch.utils.data.DataLoader(test_image, batch_size=args.n_classes * args.n_samples,
-                                              shuffle=False, drop_last=False, num_workers=8)
+    batch_size = args.n_classes * args.n_samples
+    test_loader = torch.utils.data.DataLoader(test_image,
+                                              batch_size=batch_size,
+                                              shuffle=False,
+                                              drop_last=False,
+                                              num_workers=8)
 
     model = APINet(168).cuda()
     model = nn.DataParallel(model)
