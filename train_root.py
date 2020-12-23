@@ -11,7 +11,7 @@ from model import APINet
 from Dataset import GraphemeDataset, BalancedBatchSampler
 
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3, 4"
 
 
 def train_one_epoch(model, train_loader, optimizer):
@@ -135,7 +135,7 @@ def main(args):
     model = APINet(168).cuda()
     model = nn.DataParallel(model)
 
-    epochs = 100
+    epochs = 50
     optimizer = torch.optim.AdamW(model.parameters(), 1e-4,
                                   weight_decay=1e-4, amsgrad=True)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, epochs)
