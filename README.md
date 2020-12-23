@@ -1,5 +1,6 @@
 # VRDL Final Project
 Code for Private Score 0.9270 in Bengali.AI Handwritten Grapheme Classification
+The file "report.ppt" is the slide of presentation and the file "report.pdf" is the report of this project
 
 ## Abstract
 In this work, I use API-Net to train my model<br>
