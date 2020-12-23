@@ -87,8 +87,16 @@ def _init_():
 
 
 def get_indices(train):
-    OK = {13, 22, 23, 29, 43, 53, 64, 71, 72,
-          79, 96, 103, 107, 113, 147, 149, 159}
+    ''' get the indices of training data '''
+
+    # the indices of grapheme roots which will not be dropped out
+    OK = {2, 3, 4, 6, 9, 13, 15, 18, 21, 22, 23, 25,
+          28, 29, 38, 42, 43, 48, 53, 55, 56, 58, 59,
+          64, 65, 70, 71, 72, 74, 75, 76, 77, 79, 80,
+          81, 83, 85, 86, 89, 91, 92, 96, 101, 103, 106,
+          107, 111, 112, 113, 115, 117, 119, 120, 122,
+          123, 124, 128, 133, 136, 139, 140, 141, 142,
+          144, 147, 148, 149, 150, 151, 153, 159, 167}
     Vowel = train.grapheme_root.values
     indices = []
     for i in range(len(Vowel)):
@@ -180,6 +188,7 @@ def main(args):
     model = APINet(7).cuda()
     model = nn.DataParallel(model)
 
+    # try to load grapheme_root pretrained model
     try:
         model.load_state_dict(torch.load('DenseNet121root.pth'))
         print('loaded root pretrained weight')
