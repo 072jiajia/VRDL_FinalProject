@@ -6,6 +6,8 @@ The file "report.ppt" is the slide of presentation and the file "report.pdf" is 
 In this work, I use API-Net to train my model<br>
 API-Net [Paper](https://arxiv.org/pdf/2002.10191.pdf) | [GitHub](https://github.com/PeiqinZhuang/API-Net)
 
+I trained 3 models for ghapheme root, vowel diacritic, consonant diacritic separately
+
 ## Hardware
 The following specs were used to create the solutions.
 - Ubuntu 18.04.5 LTS
